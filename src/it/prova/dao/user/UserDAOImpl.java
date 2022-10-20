@@ -26,12 +26,11 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 			throw new Exception("Connessione non attiva. Impossibile effettuare operazioni DAO.");
 
 		ArrayList<User> result = new ArrayList<User>();
-		User userTemp = null;
 
 		try (Statement ps = connection.createStatement(); ResultSet rs = ps.executeQuery("select * from user")) {
 
 			while (rs.next()) {
-				userTemp = new User();
+				User userTemp = new User();
 				userTemp.setNome(rs.getString("NOME"));
 				userTemp.setCognome(rs.getString("COGNOME"));
 				userTemp.setLogin(rs.getString("LOGIN"));
@@ -165,7 +164,6 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 			throw new Exception("Valore di input non ammesso.");
 
 		ArrayList<User> result = new ArrayList<User>();
-		User userTemp = null;
 
 		try (PreparedStatement ps = connection.prepareStatement("select * from user where dateCreated > ? ;")) {
 			// quando si fa il setDate serve un tipo java.sql.Date
@@ -173,7 +171,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 
 			try (ResultSet rs = ps.executeQuery();) {
 				while (rs.next()) {
-					userTemp = new User();
+					User userTemp = new User();
 					userTemp.setNome(rs.getString("NOME"));
 					userTemp.setCognome(rs.getString("COGNOME"));
 					userTemp.setLogin(rs.getString("LOGIN"));
@@ -216,7 +214,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public List<User> findByExample(User input) throws Exception {
 		// TODO Auto-generated method stub
