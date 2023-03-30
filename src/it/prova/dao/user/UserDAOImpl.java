@@ -255,7 +255,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 //		}
 //
 //		if (example.getDateCreated() != null) {
-//			query += " and DATECREATED='" + new java.sql.Date(example.getDateCreated().getTime()) + "' ";
+//			query += " and DATECREATED='" + java.sql.Date.valueOf(example.getDateCreated()) + "' ";
 //		}
 //
 //		try (Statement ps = connection.createStatement()) {
@@ -267,7 +267,8 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 //				userTemp.setCognome(rs.getString("COGNOME"));
 //				userTemp.setLogin(rs.getString("LOGIN"));
 //				userTemp.setPassword(rs.getString("PASSWORD"));
-//				userTemp.setDateCreated(rs.getDate("DATECREATED"));
+//				userTemp.setDateCreated(
+//						rs.getDate("DATECREATED") != null ? rs.getDate("DATECREATED").toLocalDate() : null);
 //				userTemp.setId(rs.getLong("ID"));
 //				result.add(userTemp);
 //			}
