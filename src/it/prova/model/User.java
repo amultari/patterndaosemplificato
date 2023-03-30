@@ -1,7 +1,7 @@
 package it.prova.model;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class User {
 	private Long id;
@@ -9,7 +9,7 @@ public class User {
 	private String cognome;
 	private String login;
 	private String password;
-	private Date dateCreated;
+	private LocalDate dateCreated;
 
 	public User() {
 	}
@@ -26,7 +26,7 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String nome, String cognome, String login, String password, Date dateCreated) {
+	public User(String nome, String cognome, String login, String password, LocalDate dateCreated) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.login = login;
@@ -74,11 +74,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getDateCreated() {
+	public LocalDate getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(LocalDate dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 

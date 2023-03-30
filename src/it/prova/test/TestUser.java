@@ -1,8 +1,7 @@
 package it.prova.test;
 
 import java.sql.Connection;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import it.prova.connection.MyConnection;
@@ -49,7 +48,7 @@ public class TestUser {
 	private static void testInsertUser(UserDAO userDAOInstance) throws Exception {
 		System.out.println(".......testInsertUser inizio.............");
 		int quantiElementiInseriti = userDAOInstance
-				.insert(new User("pluto", "plutotto", "ppp@example.com", "password@01", new Date()));
+				.insert(new User("pluto", "plutotto", "ppp@example.com", "password@01", LocalDate.now()));
 		if (quantiElementiInseriti < 1)
 			throw new RuntimeException("testInsertUser : FAILED");
 
@@ -75,7 +74,7 @@ public class TestUser {
 		System.out.println(".......testDeleteUser inizio.............");
 		// me ne creo uno al volo
 		int quantiElementiInseriti = userDAOInstance
-				.insert(new User("Giuseppe", "Verdi", "g.verdi@example.com", "password@01", new Date()));
+				.insert(new User("Giuseppe", "Verdi", "g.verdi@example.com", "password@01", LocalDate.now()));
 		if (quantiElementiInseriti < 1)
 			throw new RuntimeException("testDeleteUser : FAILED, user da rimuovere non inserito");
 
@@ -98,8 +97,8 @@ public class TestUser {
 	private static void testFindAllWhereDateCreatedGreaterThan(UserDAO userDAOInstance) throws Exception {
 		System.out.println(".......testFindAllWhereDateCreatedGreaterThan inizio.............");
 
-		Date dataCreazione = new SimpleDateFormat("dd-MM-yyyy").parse("03-01-2022");
-		Date dataCreazioneIlGiornoPrima = new SimpleDateFormat("dd-MM-yyyy").parse("02-01-2022");
+		LocalDate dataCreazione = LocalDate.parse("2022-02-02");
+		LocalDate dataCreazioneIlGiornoPrima = LocalDate.parse("2022-01-02");
 
 		// me ne creo un paio che fanno al caso mio così almeno due li troverò
 		User marioRossi = new User("Mario", "Rossi", "m.rossi@example.com", "password@01", dataCreazione);
@@ -117,7 +116,7 @@ public class TestUser {
 		List<User> elencoVociCreateDopoDataScelta = userDAOInstance
 				.findAllWhereDateCreatedGreaterThan(dataCreazioneIlGiornoPrima);
 		for (User userItem : elencoVociCreateDopoDataScelta) {
-			if (userItem.getDateCreated().before(dataCreazioneIlGiornoPrima))
+			if (userItem.getDateCreated().isBefore(dataCreazioneIlGiornoPrima))
 				throw new RuntimeException(
 						"testFindAllWhereDateCreatedGreaterThan : FAILED, user con data precedente con id: "
 								+ userItem.getId());
