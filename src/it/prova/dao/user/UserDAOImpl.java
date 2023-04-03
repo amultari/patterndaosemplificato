@@ -142,7 +142,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 		if (isNotActive())
 			throw new Exception("Connessione non attiva. Impossibile effettuare operazioni DAO.");
 
-		if (idDaRimuovere == null || idDaRimuovere == null || idDaRimuovere < 1)
+		if (idDaRimuovere == null || idDaRimuovere < 1)
 			throw new Exception("Valore di input non ammesso.");
 
 		int result = 0;
