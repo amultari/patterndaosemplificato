@@ -84,7 +84,7 @@ public class TestUser {
 			throw new RuntimeException("testDeleteUser : FAILED, non ci sono voci sul DB");
 
 		User ultimoDellaLista = elencoVociPresenti.get(numeroElementiPresentiPrimaDellaRimozione - 1);
-		userDAOInstance.delete(ultimoDellaLista);
+		userDAOInstance.delete(ultimoDellaLista.getId());
 
 		// ricarico per vedere se sono scalati di una unità
 		int numeroElementiPresentiDopoDellaRimozione = userDAOInstance.list().size();

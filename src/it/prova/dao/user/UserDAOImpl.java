@@ -137,17 +137,17 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 	}
 
 	@Override
-	public int delete(User utenteInput) throws Exception {
+	public int delete(Long idDaRimuovere) throws Exception {
 		// prima di tutto cerchiamo di capire se possiamo effettuare le operazioni
 		if (isNotActive())
 			throw new Exception("Connessione non attiva. Impossibile effettuare operazioni DAO.");
 
-		if (utenteInput == null || utenteInput.getId() == null || utenteInput.getId() < 1)
+		if (idDaRimuovere == null || idDaRimuovere == null || idDaRimuovere < 1)
 			throw new Exception("Valore di input non ammesso.");
 
 		int result = 0;
 		try (PreparedStatement ps = connection.prepareStatement("DELETE FROM user WHERE ID=?")) {
-			ps.setLong(1, utenteInput.getId());
+			ps.setLong(1, idDaRimuovere);
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
